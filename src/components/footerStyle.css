@@ -1,0 +1,34 @@
+/* structure */ 
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'home' 'search' 'add' 'message' 'ping';
+    justify-content: center;
+    text-align: center;
+}
+
+.home {
+    grid-area: 'home';
+
+}
+
+.search {
+    grid-area: 'search';
+
+}
+
+.add {
+    grid-area: 'add';
+
+}
+
+.message{ 
+    grid-area: 'message'; 
+
+}
+
+.ping {
+    grid-area: 'ping';
+}
