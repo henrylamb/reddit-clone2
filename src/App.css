@@ -6,9 +6,10 @@ html {
 
 * {
   font-size: 1rem;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, 'Arial Narrow Bold', sans-serif;
   font-style: normal;
   font-weight: normal;
+  margin: 10px;
 
 }
 
@@ -17,7 +18,7 @@ html {
 .app {
   display: grid;
   grid-template-columns: 1;
-  grid-template-rows: 100px 3fr 100px;
+  grid-template-rows: 100px 600px 100px;
   grid-template-areas:  'header'
                         'feed'
                         'footer';

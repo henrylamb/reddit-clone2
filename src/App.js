@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+//import logo from './reddit-logo.png';
 import './App.css';
 import { Header } from '../src/components/header';
 import { Footer } from '../src/components/footer';

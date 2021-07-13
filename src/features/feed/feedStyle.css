@@ -1,0 +1,13 @@
+.feed {
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-areas: 'post';
+    grid-template-columns: 1;
+    grid-template-rows: 1;
+    justify-content: center;
+    text-align: center;
+    margin: 10px;
+}
+
+
+

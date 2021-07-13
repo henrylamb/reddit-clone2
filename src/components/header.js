@@ -1,8 +1,7 @@
-import {React, useState} from 'react';
-
+import {React} from 'react';
+import './headerStyle.css'; 
 
 export const Header = () => {
-    const {input, setInput} = useState(''); // i think that i am going to need a base state
 
     const handleTyping = () => {
 
@@ -11,11 +10,11 @@ export const Header = () => {
     
     return(
         <div className = "grid">
-            <div>
-                <h2><a href = 'path'>Home</a></h2>
+            <div className = 'home'>
+                <h3><a href = 'path'>Home</a></h3>
             </div>
             
-            <div>
+            <div className = 'search'>
                 <input 
                 onChange = {handleTyping} 
                 placeholder = "Search"
@@ -23,12 +22,12 @@ export const Header = () => {
                 /> 
             </div>
 
-            <div>
-                <h2><a href ="path">Settings</a></h2>
+            <div className = 'setting'>
+                <h3><a href ="path">Settings</a></h3>
             </div>
 
-            <div>
-                <h2><a href = "path">Store</a></h2>
+            <div className = 'store'>
+                <h3><a href = "path">Store</a></h3>
             </div>
         </div>
 

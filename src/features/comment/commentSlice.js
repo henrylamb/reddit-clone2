@@ -1,7 +1,7 @@
-import { createSlice } from 'react-redux';
+import { createSlice } from '@reduxjs/toolkit';
 
 export const commentSlice = createSlice({
-    name: '',
+    name: 'commentSlice',
     initialState: [],
     reducers: {
 

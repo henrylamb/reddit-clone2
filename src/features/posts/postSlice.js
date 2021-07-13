@@ -1,4 +1,4 @@
-import { createSlice } from 'react-redux';
+import { createSlice } from '@reduxjs/toolkit';
 import { usefulData } from '../feed/feedSlice';
 
 const state = {
