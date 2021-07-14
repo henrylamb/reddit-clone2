@@ -26,7 +26,7 @@ export const postSlice = createSlice({
 
 export const {upVote, downVote} = postSlice.actions;
 
-export const selectPost = state => state.postSlice.state;
+export const selectPost = state => state.state;
 
 export default postSlice.reducer;
 

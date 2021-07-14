@@ -10,12 +10,19 @@ import { Feed } from '../src/features/feed/feed';
 function App() {
   return (
     <div className="App">
-      <Header className = 'header' />
+      <div className = "header">
+        <Header />
+      </div>
 
-      <Feed className = 'feed'/>
+      <div className = "feed">
+        <Feed />
+      </div>
 
-      <Footer className = 'footer' />
+      <div className = "footer">
+        <Footer />
+      </div>
 
+      
     </div>
   );
 }

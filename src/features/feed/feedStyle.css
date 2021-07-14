@@ -1,12 +1,19 @@
-.feed {
+/*.Feed {
     display: grid;
-    grid-auto-rows: auto;
+
     grid-template-areas: 'post';
     grid-template-columns: 1;
     grid-template-rows: 1;
     justify-content: center;
     text-align: center;
+    justify-items: center;
+    
     margin: 10px;
+} */
+
+h1 {
+    text-align: center;
+    justify-self: center;
 }
 
 

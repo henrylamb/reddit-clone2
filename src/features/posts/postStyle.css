@@ -1,0 +1,38 @@
+.post {
+    display: grid;
+    grid-template-areas: 'vote title .'
+                         '. content .'
+                         '. author .';
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows:1fr 4fr 1fr;
+    align-content: center;
+    justify-content: center;
+    margin: 5px;
+    width: 95%;
+    height: 100%;
+    grid-gap: 10px
+}
+
+.vote {
+    grid-area: 'vote';
+
+}
+
+.title {
+    grid-area: 'title';
+
+}
+
+.content{ 
+    grid-area: 'content';
+
+}
+
+.author {
+    grid-area: 'author';
+
+}
+
+.space{
+    grid-area: 'space';
+}
