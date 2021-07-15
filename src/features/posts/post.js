@@ -4,7 +4,7 @@ import './postStyle.css';
 
 export const Post = () => {
 
-    const selectPost  = useSelector(selectFeed); // not sure about the naming convention of this
+    //const selectPost  = useSelector(selectFeed); // not sure about the naming convention of this
     // need to get the data from select posts state
 
 

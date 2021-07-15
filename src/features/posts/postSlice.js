@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { usefulData } from '../feed/feedSlice';
+import { usefulData} from '../feed/feedSlice';
 
-const state = {
+const data = {
     ups: usefulData.ups,
     downs: usefulData.downs,
     title: usefulData.title,
@@ -11,7 +11,7 @@ const state = {
 
 export const postSlice = createSlice({
     name: 'postSlice',
-    initialState: {state},
+    initialState: {data},
     reducers: {
         upVote: (state, action) => {
             state.ups += action.payload;
@@ -26,7 +26,7 @@ export const postSlice = createSlice({
 
 export const {upVote, downVote} = postSlice.actions;
 
-export const selectPost = state => state.state;
+export const selectPost = state => state.postSlice; // not sure about these naming conventions
 
 export default postSlice.reducer;
 
