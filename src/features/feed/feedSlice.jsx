@@ -1,8 +1,8 @@
 //import {createSlice} from 'react-redux';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 import 'react-redux';
 import { fetchRedditData } from '../../redditData';
-
 
 // have the imports above 
 
@@ -22,10 +22,6 @@ export const feedSlice = createSlice({
     name: 'feedSlice',
     initialState: initialState,
     reducers: {
-        loadMorePosts: (state, action) => {
-
-            
-        },
         loadingData:  (state, action) => {
             state.hasError = false;
             state.isLoading = true;
@@ -45,18 +41,20 @@ export const feedSlice = createSlice({
 
 // the redux thunk
 
+console.log(initialState.feed)
+
 export const getData = () => {
-    return async (dispatch) => {
+    return async (useDispatch) => {
         try{
-            dispatch(loadingData());
+            useDispatch(loadingData());
 
             const posts = await fetchRedditData();
                 
-            dispatch(successLoadingData(posts));
+            useDispatch(successLoadingData(posts));
 
         } catch(error) {
             console.log(error)
-            dispatch(failedLoadingData())
+            useDispatch(failedLoadingData())
         }
 
     }
@@ -70,9 +68,10 @@ export const getData = () => {
 
 
 
+
 //exports !!!!!!!!! to make the data useful there will have to be a for loop that is used to iterate through each children item in the array - this will occur in a component
 
-export const selectFeed = state => state.feedSlice; // the state will be changed with this line - the above useful data should change the original state and thus lead to a rerender to occur
+export const selectFeed = state => state.feed; // the state will be changed with this line - the above useful data should change the original state and thus lead to a rerender to occur
 
 export default feedSlice.reducer;
 

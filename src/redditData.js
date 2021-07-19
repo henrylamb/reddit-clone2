@@ -7,9 +7,7 @@ export const fetchRedditData = async () => {
     
     try {
         
-    const response = await fetch(`https://www.reddit.com/r/${subredditInput}.json?limit=${postPerRequest}${
-        afterParam ? '&after=' + afterParam : ''
-    }`);
+    const response = await fetch(`https://www.reddit.com/r/${subredditInput}`);
     const data = await response.json();
    
     // having smaller objects which hold different parts of the data that i want: 

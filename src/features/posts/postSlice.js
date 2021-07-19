@@ -1,13 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { usefulData} from '../feed/feedSlice';
 
-const data = {
-    ups: usefulData.ups,
-    downs: usefulData.downs,
-    title: usefulData.title,
-    thumbnail: usefulData.thumbnail,
-    author: usefulData.author,
-}
+const data = {}
 
 export const postSlice = createSlice({
     name: 'postSlice',
