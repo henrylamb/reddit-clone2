@@ -1,44 +1,57 @@
 import { Post } from '../posts/post';
-import { selectFeed, getData, loadMorePosts } from './feedSlice';
+import { grabDataThunk} from './feedSlice';
 import { useSelector, useDispatch  } from 'react-redux';
-import { createSelector } from '@reduxjs/toolkit';
-import { fetchRedditData } from '../../redditData';
 import React, { useEffect } from 'react';
 
-    const makeSelectorFeed = createSelector(
-        selectFeed, 
-        (feed) => ({feed,}));
+   
 
 
 export const Feed  = () => {
  
     const dispatch = useDispatch();
 
-    const { feed } = useSelector(selectFeed);
+    const feedData = useSelector(state => state.feedSlice);
 
-    
+    let {feed} = feedData;
 
+    useEffect(() => {dispatch(grabDataThunk())}, [dispatch]); // not sure if the array notation is needed
 
-    useEffect(() => {
+    if(!feed){
+        feed = []
+    } else {
+        return feed
+    };
 
-        return getData();
-  
-
-    }, []); // not sure if the array notation is needed
-
+    const redditData = feed.children.data;
 
 
 
     return(
-        <div className = "Feed">
-            <Post />
+        <div className = "Feed">  
+            {redditData.map((element, idx) => (
+                <div className = "post">
+                    <div className = 'vote'>
+                        {element.ups}
+                    </div>
+
+                    <div className = "title">
+                        {element.title} 
+
+                    </div>
+
+                    <div className = "content">
+                        {[element.secure_media.reddit_video].fallback_url ? (<video src = {[element.secure_media.reddit_video].fallback_url} alt = "video for this post"></video>) : (<img src = {element.thumbnail} alt = "thumbnail for the post" />)} 
             
-            <div><p>{feed.children}</p></div>
-           
-     
+                    </div>
+
+                    <div className = "author"> 
+                        {element.author_fullname}
+                    </div>
+
+                </div>
+            )})}             
                 
-            
-            <button onClick = {() => getData()}>Load More</button>
+            <button >Load More</button>
         </div>
         
     )

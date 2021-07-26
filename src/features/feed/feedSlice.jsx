@@ -10,8 +10,17 @@ const initialState = {
     hasError: false, 
     isLoading: false,
     feed: [],
+    ups: 1,
+    downs: 1,
 
 };
+
+// redux thunk here: 
+
+const grabDataThunk = createAsyncThunk('features/feedSLice', async () => {
+    const response = await fetchRedditData();
+    return response;
+})
 
 
 
@@ -22,67 +31,44 @@ export const feedSlice = createSlice({
     name: 'feedSlice',
     initialState: initialState,
     reducers: {
-        loadingData:  (state, action) => {
+        upVote: (state, action) => {
+            state.ups += action.payload;
+        },
+        downVote: (state,action) => {
+            state.downs -= action.payload;
+        },
+
+    },
+    extraReducers: {
+        [grabDataThunk.pending]: (state, action) => {
             state.hasError = false;
             state.isLoading = true;
         },
-        failedLoadingData: (state, action) => {
+        [grabDataThunk.rejected]: (state, action) => {
             state.hasError = true;
             state.isLoading = false;
         },
-        successLoadingData: (state, action) => {
-            state.hasError = false;
+        [grabDataThunk.pending]: (state, action) => {
             state.isLoading = false;
+            state.hasError = false;
             state.feed = action.payload;
         }
 
     }
 });
 
-// the redux thunk
-
-console.log(initialState.feed)
-
-export const getData = () => {
-    return async (useDispatch) => {
-        try{
-            useDispatch(loadingData());
-
-            const posts = await fetchRedditData();
-                
-            useDispatch(successLoadingData(posts));
-
-        } catch(error) {
-            console.log(error)
-            useDispatch(failedLoadingData())
-        }
-
-    }
-}
-
-
-
-
-
-
-
-
 
 
 //exports !!!!!!!!! to make the data useful there will have to be a for loop that is used to iterate through each children item in the array - this will occur in a component
-
-export const selectFeed = state => state.feed; // the state will be changed with this line - the above useful data should change the original state and thus lead to a rerender to occur
 
 export default feedSlice.reducer;
 
 //export const usefulData = initialState.feed;
 
 export const {
-    loadingData,
-    failedLoadingData,
-    successLoadingData,
-
-} = feedSlice.actions
+    upVote,
+    downVote,
+    } = feedSlice.actions
 
 
 
