@@ -24,15 +24,15 @@ export const Feed  = () => {
         return feed;
     }
 
-    let redditData = feed.children.data;
+    let redditData = [feed.data.children.data];
     
 
-    /*if(!redditData){
+    if(!redditData){
         redditData = [testData]
         console.log('using test data');
     } else {
-        redditData = feed.children;
-    }; */
+        redditData = redditData;
+    }; 
     
     console.log(redditData);
     
