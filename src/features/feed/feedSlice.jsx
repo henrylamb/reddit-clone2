@@ -1,6 +1,4 @@
-//import {createSlice} from 'react-redux';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
 import 'react-redux';
 import { fetchRedditData } from '../../redditData';
 
@@ -17,8 +15,9 @@ const initialState = {
 
 // redux thunk here: 
 
-const grabDataThunk = createAsyncThunk('features/feedSLice', async () => {
+export const grabDataThunk = createAsyncThunk('features/feedSlice', async () => {
     const response = await fetchRedditData();
+    console.log('reddit data grabbed')
     return response;
 })
 
@@ -43,15 +42,19 @@ export const feedSlice = createSlice({
         [grabDataThunk.pending]: (state, action) => {
             state.hasError = false;
             state.isLoading = true;
+            console.log('data pending')
         },
         [grabDataThunk.rejected]: (state, action) => {
             state.hasError = true;
             state.isLoading = false;
+            console.log('failed to get data')
         },
-        [grabDataThunk.pending]: (state, action) => {
+        [grabDataThunk.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
             state.feed = action.payload;
+            console.log('you have got data');
+            console.log(action.payload);
         }
 
     }

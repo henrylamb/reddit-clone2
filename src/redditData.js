@@ -2,14 +2,14 @@ import axios from 'axios';
 
 
 const subredditInput = 'popular'; // this is a hold action which need to be put into the () of the below function
-const postPerRequest = 10;
-const afterParam = ''; // this is a place holder - will also be an argument for the function below 
+const postsPerRequest = 10;
+//const afterParam = ''; // this is a place holder - will also be an argument for the function below 
 
 // this is just the fetching function
-export const fetchRedditData = async () => {}
+export const fetchRedditData = async () => {
     try {
         
-    const response = await axios.get(`https://www.reddit.com/r/${subredditInput}`); // not sure this is not liked
+    const response = await axios.get(`https://www.reddit.com/r/${subredditInput}.json?limit=${postsPerRequest}`); // not sure this is not liked
     return response.data;
    
     // having smaller objects which hold different parts of the data that i want: 
