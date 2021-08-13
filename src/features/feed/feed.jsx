@@ -1,72 +1,45 @@
-import { grabDataThunk} from './feedSlice';
-import { useSelector, useDispatch  } from 'react-redux';
-import React, { useEffect } from 'react';
-import {testData } from './testData';
-
+import React from 'react';
 import './postStyle.css';
 
    
+console.log('is this working ?')
 
+export const Feed  = (props) => {
 
-export const Feed  = () => {
-
-    const dispatch = useDispatch();
-    useEffect(() => {dispatch(grabDataThunk())}, [dispatch]); // not sure if the array notation is needed
-
-    const feedData = useSelector(state => state.feedSlice);
-
-    let {feed} = feedData;
+    const {feed} = props;
+    console.log(feed);
 
     
-    if(!feed){
-         feed = [];
-    } else {
-        return feed;
-    }
-
-    let redditData = [feed.data.children.data];
     
-
-    if(!redditData){
-        redditData = [testData]
-        console.log('using test data');
-    } else {
-        redditData = redditData;
-    }; 
-    
-    console.log(redditData);
-    
-
-
-
-    return(
+    return( 
         <div className = "Feed">  
-            {redditData.map((element, idx) => (
-                <div className = "post" key = "idx">
+
+                <div className = "post">
+
                     <div className = 'vote' >
-                        {element.ups}
+                       <p>{feed.ups}</p>   
                     </div>
 
                     <div className = "title" >
-                        {element.title} 
+                        {feed.title} 
 
                     </div>
 
                     <div className = "content">
-                        <img  src = {element.thumbnail} alt = "thumbnail for the post" />
+                        <img  src = {feed.thumbnail} alt = "thumbnail for the post" />
             
                     </div>
 
                     <div className = "author" > 
-                        {element.author_fullname}
+                        {feed.author_fullname}
                     </div>
 
                 </div>
               )       
-            )}             
+            )        
                 
             <button >Load More</button>
         </div>
         
-    )
+    ) 
 };

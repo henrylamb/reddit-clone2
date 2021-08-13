@@ -18,11 +18,21 @@ const initialState = {
 export const grabDataThunk = createAsyncThunk('features/feedSlice', async () => {
     const response = await fetchRedditData();
     console.log('reddit data grabbed')
-    return response;
+    const reply = response.data.children;
+    return reply;
 })
 
 
+// data parser:
 
+const dataParser = (feedData) => {
+    let array = [];
+    array.push(feedData)
+    console.log(array);
+    let value = array.map(feed => feed.data);
+    console.log(value);
+    return value
+};
 
 
 // the slice
@@ -52,21 +62,17 @@ export const feedSlice = createSlice({
         [grabDataThunk.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.hasError = false;
-            state.feed = action.payload;
             console.log('you have got data');
-            console.log(action.payload);
+            state.feed = dataParser(action.payload);
+            
+            
+            console.log('data? ' + state.feed);
         }
 
     }
 });
 
-
-
-//exports !!!!!!!!! to make the data useful there will have to be a for loop that is used to iterate through each children item in the array - this will occur in a component
-
 export default feedSlice.reducer;
-
-//export const usefulData = initialState.feed;
 
 export const {
     upVote,
