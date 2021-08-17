@@ -29,9 +29,13 @@ const dataParser = (feedData) => {
     let array = [];
     array.push(feedData)
     console.log(array);
-    let value = array.map(feed => feed.data);
-    console.log(value);
-    return value
+   
+    for (const element in array) {
+        let value = array.map(feed => feed.data);
+        console.log(value);
+        return value;
+    }
+    //return value;
 };
 
 
@@ -63,7 +67,7 @@ export const feedSlice = createSlice({
             state.isLoading = false;
             state.hasError = false;
             console.log('you have got data');
-            state.feed = dataParser(action.payload);
+            state.feed = action.payload;
             
             
             console.log('data? ' + state.feed);

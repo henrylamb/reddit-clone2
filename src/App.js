@@ -21,23 +21,22 @@ function App() {
 
   const feedData = useSelector(state => state.feedSlice);
   let {feed} = feedData;
+  console.log('test 1')
+  console.log(feed)
 
     
     if(!feed){
          feed = [];
+         console.log('USING empty array');
     } else {
+        console.log('using feed from the useSelector');
         return feed;
+        
     };
 
-    let redditData = [feed];
-    console.log('data for two?' + redditData);
+    console.log(feed);
 
-    if(!redditData){
-        redditData = []
-        console.log('using test data');
-    };
-
-    console.log('in feed.jsx data' + redditData);
+  
   return (
     <div className="App">
       <div className = "header">
@@ -45,10 +44,10 @@ function App() {
       </div>
 
       <div className = "feed">
-        {redditData.map((feed, idx) => (
+        {[feed].map((data, kind) => (
           <Feed 
-          key = {idx}
-          feed = {feed}
+          feed = {data}
+          key = {kind}
           />
         ))}
       </div>
